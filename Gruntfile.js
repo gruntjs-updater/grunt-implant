@@ -29,7 +29,6 @@ module.exports = function(grunt) {
     },
 
     implant: {
-
       'basic-config': {
         files: {
           'dest/basic/basic-config.html': ['test/fixtures/basic-config.html']

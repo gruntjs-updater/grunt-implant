@@ -1,7 +1,7 @@
 {
   "name": "grunt-implant",
   "description": "Implant one HTML source inside another, ie: Replace blocks in an HTML document.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/f1lt3r/grunt-implant",
   "author": {
     "name": "Alistair MacDonald",
