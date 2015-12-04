@@ -1,6 +1,6 @@
 /*
- * grunt-cdn-switch
- * https://github.com/alistair/grunt-cdn-switch
+ * grunt-implant
+ * https://github.com/alistair/grunt-implant
  *
  * Copyright (c) 2015 Alistair MacDonald
  * Licensed under the MIT license.
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
-  grunt.registerMultiTask('cdn_switch', 'Insert switchable Script and Style tags into your HTML that automatically link to Local or CDN resources.', function() {
+  grunt.registerMultiTask('grunt-replicajector', 'Implant once source inside another. Eg: replace parts of an HTML or JavaScript file.', function() {
 
 
     var target = this.target;
@@ -279,7 +279,7 @@ module.exports = function(grunt) {
 
           // Scan an HTML file for comment nodes that contain "cdn-switch"
           // and a target name for the grunt task.
-          // Eg: <!--cdn-switch:tagert-name-->
+          // Eg: <!--injectify:tagert-name-->
 
           // When found...
           if (splits[0]==='cdn-switch' && splits[1]===obj.block.name) {
@@ -376,6 +376,8 @@ module.exports = function(grunt) {
 
 
       Promise.settle(promiseStack).then(function () {
+
+        console.log(src);
 
         // Write out the HTML string to the destination file
         if (insertedBlocks) {

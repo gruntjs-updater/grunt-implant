@@ -1,6 +1,6 @@
 /*
- * grunt-cdn-switch
- * https://github.com/alistair/grunt-cdn-switch
+ * grunt-implant
+ * https://github.com/alistair/grunt-implant
  *
  * Copyright (c) 2015 Alistair MacDonald
  * Licensed under the MIT license.
