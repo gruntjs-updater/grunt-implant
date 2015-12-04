@@ -28,19 +28,17 @@ module.exports = function(grunt) {
       tests: ['dest']
     },
 
-    cdn_switch: {
+    implant: {
 
-      'basic-local-config': {
+      'basic-config': {
         files: {
-          'dest/basic/basic-local-config.html': ['test/fixtures/basic-local-config.html']
+          'dest/basic/basic-config.html': ['test/fixtures/basic-config.html']
         },
         options: {
-          use_local: true,
-          blocks: {
-            javascript: {
-              local_path: 'dest/basic/js',
-              html: '<script src="{{resource}}"></script>',
-              resources: [
+          target: {
+            'javascript': {
+              wrap: '<script src="{{implant}}" type="text/javascript"></script>',
+              implant: [
                 'http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js',
                 'http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js',
                 'http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js',
@@ -49,46 +47,6 @@ module.exports = function(grunt) {
           }
         }
       },
-
-      'newer-local-config': {
-        files: {
-          'dest/newer/newer-local-config.html': ['test/fixtures/newer-local-config.html']
-        },
-        options: {
-          use_local: {
-            fetch_newer: true,
-          },
-          blocks: {
-            javascript: {
-              local_path: 'dest/newer/js',
-              html: '<script src="{{resource}}"></script>',
-              resources: [
-                'http://code.jquery.com/jquery-latest.js',
-              ],
-            },
-          }
-        }
-      },
-
-
-      'cdn-config': {
-        files: {
-          'dest/cdn/cdn-config.html': ['test/fixtures/cdn-config.html']
-        },
-        options: {
-          use_local: false,
-          blocks: {
-            javascript: {
-              local_path: 'dest/cdn/js',
-              html: '<script src="{{resource}}"></script>',
-              resources: [
-                'http://code.jquery.com/jquery-latest.js',
-              ],
-            },
-          }
-        }
-      },
-
     },
 
     // Unit tests.
@@ -108,9 +66,8 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'cdn_switch', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'implant', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
-  // grunt.registerTask('default', ['cdn_switch']);
 };

@@ -1,7 +1,7 @@
 {
   "name": "grunt-implant",
-  "description": "Implant once source inside another. Eg: replace parts of an HTML or JavaScript file.",
-  "version": "0.0.1",
+  "description": "Implant one HTML source inside another, ie: Replace blocks in an HTML document.",
+  "version": "0.0.2",
   "homepage": "https://github.com/f1lt3r/grunt-implant",
   "author": {
     "name": "Alistair MacDonald",
@@ -39,8 +39,6 @@
     "gruntplugin"
   ],
   "dependencies": {
-    "bluebird": "^2.9.25",
-    "cheerio": "^0.19.0",
-    "mkdirp": "^0.5.0"
+    "cheerio": "^0.19.0"
   }
 }

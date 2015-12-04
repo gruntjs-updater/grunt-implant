@@ -1,4 +1,4 @@
-# grunt-cdn-switch
+# grunt-implant
 
 > Insert switchable Script and Style tags into your HTML that automatically link to Local or CDN resources.
 
