@@ -76,7 +76,7 @@ grunt.initConfig({
       options: {
         target: {
           'javascript': {
-            wrap: '<script src="{{implant}}" type="text/javascript"></script>',
+            wrap: '<script src="{{implant}}" type="text/javascript"></script>\n',
             implant: [
               'angular.min.js',
               'angular-animate.js',
