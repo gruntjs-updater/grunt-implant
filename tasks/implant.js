@@ -48,23 +48,29 @@ module.exports = function(grunt) {
       }).join(grunt.util.normalizelf(options.separator));
 
 
-
       function wrap (outer, implant) {
         return outer.replace('{{implant}}', implant);
+      }
+
+
+      function fold (target, output) {
+        if (target.fold) {
+          return wrap(target.fold, output);
+        }
+
+        // If there was no fold specified...
+        return output;
       }
 
 
       function build (target) {
         var output = '';
 
-
-
         target.implant.forEach(function (implant) {
           var contents;
 
           if (typeof implant === 'object') {
             contents = grunt.file.read(implant.file);
-            console.log(contents);
           }
 
           if (typeof implant === 'string') {
@@ -76,12 +82,10 @@ module.exports = function(grunt) {
           } else {
             output += contents;
           }
-
         });
 
-        return output;
+        return fold(target, output);
       }
-
 
 
       // Filter HTML files in the Grunt files list

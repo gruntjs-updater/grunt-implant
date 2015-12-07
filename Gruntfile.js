@@ -99,6 +99,24 @@ module.exports = function(grunt) {
         }
       },
 
+      'fold-config': {
+        files: {
+          'dest/fold-config.html': ['test/fixtures/fold-config.html']
+        },
+        options: {
+          target: {
+            'fold-target': {
+              fold: '<section>{{implant}}</section>',
+              wrap: '<div>{{implant}}</div>',
+              implant: [
+                'Implant A',
+                'Implant B',
+              ],
+            },
+          }
+        }
+      },
+
     },
 
     // Unit tests.
