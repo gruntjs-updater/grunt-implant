@@ -49,26 +49,36 @@ module.exports = function(grunt) {
 
 
 
-      function wrap (implant, wrapper) {
-        var parts = wrapper.split('{{implant}}'),
-          output = '';
-
-        implant.forEach(function (implant) {
-          output += parts[0] + implant + parts[1];
-        });
-
-        return output;
+      function wrap (outer, implant) {
+        return outer.replace('{{implant}}', implant);
       }
 
 
-
       function build (target) {
+        var output = '';
 
-        if (target.wrap) {
-          return wrap(target.implant, target.wrap);
-        }
 
-        return target.implant.join();
+
+        target.implant.forEach(function (implant) {
+          var contents;
+
+          if (typeof implant === 'object') {
+            contents = grunt.file.read(implant.file);
+          }
+
+          if (typeof implant === 'string') {
+            contents = implant;
+          }
+
+          if (target.wrap) {
+            output += wrap(target.wrap, contents);
+          } else {
+            output += contents;
+          }
+
+        });
+
+        return output;
       }
 
 
@@ -138,7 +148,7 @@ module.exports = function(grunt) {
 
 
       // For each block in the target...
-      for (var targetName in options.target){
+      for (var targetName in options.target) {
 
         var target = options.target[targetName];
         target.name = targetName;

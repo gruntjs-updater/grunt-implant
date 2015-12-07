@@ -37,10 +37,31 @@ exports.implant = {
   basic_config: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('dest/basic/basic-config.html');
+    var actual = grunt.file.read('dest/basic-config.html');
     var expected = grunt.file.read('test/expected/basic-config.html');
 
-    test.equal(actual, expected, 'basic-config should work.');
+    test.equal(actual, expected, 'basic-config should work');
+    test.done();
+  },
+
+
+  no_wrap: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('dest/no-wrap.html');
+    var expected = grunt.file.read('test/expected/no-wrap.html');
+
+    test.equal(actual, expected, 'no wrap should work');
+    test.done();
+  },
+
+  file_config: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('dest/file-config.html');
+    var expected = grunt.file.read('test/expected/file-config.html');
+
+    test.equal(actual, expected, 'file-config should insert "Hello world!"');
     test.done();
   },
 

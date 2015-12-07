@@ -31,12 +31,12 @@ module.exports = function(grunt) {
     implant: {
       'basic-config': {
         files: {
-          'dest/basic/basic-config.html': ['test/fixtures/basic-config.html']
+          'dest/basic-config.html': ['test/fixtures/basic-config.html']
         },
         options: {
           target: {
             'javascript': {
-              wrap: '<script src="{{implant}}" type="text/javascript"></script>',
+              wrap: '<script src="{{implant}}" type="text/javascript"></script>\n',
               implant: [
                 'http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js',
                 'http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js',
@@ -46,6 +46,39 @@ module.exports = function(grunt) {
           }
         }
       },
+
+      'no-wrap': {
+        files: {
+          'dest/no-wrap.html': ['test/fixtures/no-wrap.html']
+        },
+        options: {
+          target: {
+            'no-wrap': {
+              implant: [
+                'A',
+                'B',
+                'C',
+              ],
+            },
+          }
+        }
+      },
+
+      'file-config': {
+        files: {
+          'dest/file-config.html': ['test/fixtures/file-config.html']
+        },
+        options: {
+          target: {
+            'file-config': {
+              implant: [
+                { file: 'test/fixtures/hello-world.txt' },
+              ],
+            },
+          }
+        }
+      },
+
     },
 
     // Unit tests.
