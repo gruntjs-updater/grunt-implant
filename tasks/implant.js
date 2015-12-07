@@ -64,6 +64,7 @@ module.exports = function(grunt) {
 
           if (typeof implant === 'object') {
             contents = grunt.file.read(implant.file);
+            console.log(contents);
           }
 
           if (typeof implant === 'string') {
@@ -107,7 +108,7 @@ module.exports = function(grunt) {
               // Write new block into DOM and notify
               obj.$(child).replaceWith(implant);
 
-              grunt.log.ok('Write: \'' + obj.target.name + '\' comment written to: \'' + obj.dest + '\'');
+              grunt.log.ok('Implant: \'' + obj.target.name + '\' into: \'' + obj.dest + '\'');
             }
           }
 
@@ -126,25 +127,8 @@ module.exports = function(grunt) {
       }
 
 
-
-      function compileTarget (target, src) {
-        // Load the HTML file into Cheerio DOM parser
-        var $ = cheerio.load(src);
-
-        // Scan the DOM for places to switch CDN/Local resources
-        filter({
-          $: $,
-          dest: f.dest,
-          node: $._root,
-          target: target
-        });
-
-        // Flatten the DOM back to a string
-        src = $.html();
-
-        return src;
-      }
-
+      // Load the HTML file into Cheerio DOM parser
+      var $ = cheerio.load(src);
 
 
       // For each block in the target...
@@ -153,16 +137,21 @@ module.exports = function(grunt) {
         var target = options.target[targetName];
         target.name = targetName;
 
-        var compiledSrc = compileTarget(target, src);
+        filter({
+          $: $,
+          dest: f.dest,
+          node: $._root,
+          target: target
+        });
 
-        grunt.file.write(f.dest, compiledSrc);
       }
 
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+      var htmlString = $.html();
 
+      grunt.file.write(f.dest, htmlString);
 
+      grunt.log.writeln('Implant: file "' + f.dest + '" created.');
     });
 
   });

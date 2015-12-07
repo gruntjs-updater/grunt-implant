@@ -79,6 +79,26 @@ module.exports = function(grunt) {
         }
       },
 
+      'multi-target': {
+        files: {
+          'dest/multi-target.html': ['test/fixtures/multi-target.html']
+        },
+        options: {
+          target: {
+            'target-a': {
+              implant: [
+                { file: 'test/fixtures/target-a.txt' },
+              ],
+            },
+            'target-b': {
+              implant: [
+                { file: 'test/fixtures/target-b.txt' },
+              ],
+            },
+          }
+        }
+      },
+
     },
 
     // Unit tests.

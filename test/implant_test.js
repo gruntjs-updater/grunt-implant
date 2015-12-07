@@ -65,4 +65,15 @@ exports.implant = {
     test.done();
   },
 
+
+  multi_target: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('dest/multi-target.html');
+    var expected = grunt.file.read('test/expected/multi-target.html');
+
+    test.equal(actual, expected, 'multi-target should make 2 inserts');
+    test.done();
+  },
+
 };
