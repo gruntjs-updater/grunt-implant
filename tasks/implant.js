@@ -80,7 +80,6 @@ module.exports = function(grunt) {
 
 
           if (child.type === 'comment'){
-          console.log(child.type);
 
             var tagIdentifier = child.data.slice(0, child.data.indexOf(':')),
               targetName = child.data.slice(child.data.lastIndexOf(':')+1);
